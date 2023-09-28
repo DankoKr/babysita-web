@@ -1,0 +1,32 @@
+.accountContainer {
+    background-color: #F2F2F2; 
+    border-radius: 20px; 
+    width: 400px; 
+    margin: auto; 
+    padding: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); 
+}
+  
+.accountData {
+    font-family: 'Comic Sans MS', cursive, sans-serif; 
+}
+  
+h2 {
+    color: #FF6F91;
+    margin-bottom: 20px; 
+}
+  
+p {
+    color: #6A0572; 
+    margin-bottom: 10px;
+    line-height: 1.6; 
+}
+  
+strong {
+    font-weight: bold; 
+}
+
+.loading {
+    color: #FF6F91;
+}
+  

@@ -1,0 +1,19 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh; 
+    margin: 0 auto;
+}
+  
+.step-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%; 
+}
+  
+.step-container > div {
+    margin: 0 10px;
+}
+  
+  

@@ -1,0 +1,32 @@
+.imageContainer {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    background-color: #ffffff;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+  
+  .imageContainer img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .imageContainer p {
+    margin: 16px;
+    padding: 0;
+    font-size: 16px;
+    color: #333333;
+    background-color: rgba(255, 255, 255, 0.9);
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 32px);
+  }
+  
+  

@@ -1,0 +1,31 @@
+.stepbox {
+    background-color: #FFF0F5;
+    border: 1px solid #FAD02E;
+    border-radius: 8px;
+    margin: 16px;
+    overflow: hidden;
+    transition: 0.3s;
+    width: 300px;
+}
+
+.container {
+    padding: 16px;
+    word-wrap: break-word;
+}
+
+.stepbox:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transform: scale(1.05);
+}
+
+h3 {
+    color: #FF69B4;
+    margin-bottom: 8px;
+    overflow-wrap: break-word; 
+}
+
+p {
+    color: #666;
+    overflow-wrap: break-word;
+}
+
