@@ -1,23 +1,20 @@
-import { useState } from "react";
 import axios from "axios";
 
 const url = "http://localhost:8080/posters";
 
 const usePostRequest = () => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [image, setImage] = useState('');
-  const [eventDate, setEventDate] = useState('');
-
-  const postData = async () => {
+  const postData = async (values) => {
     try {
-      const resp = await axios.post(url, { title, description, image, eventDate });
+      const resp = await axios.post(url, values);
     } catch (error) {
       console.error(error.response);
+      throw error;
     }
   };
-
-  return { postData, setTitle, setDescription, setImage, setEventDate };
+  
+  //state is now managed by Formik
+  return { postData };
+  
 };
 
 export default usePostRequest;

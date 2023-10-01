@@ -1,7 +1,23 @@
-.inputError {
-    border: 2px solid red;
+.input {
+    width: 50%; 
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
-
+  
+.inputError {
+    border-color: red;
+    box-shadow: 0px 4px 6px rgba(255, 0, 0, 0.1);
+}
+  
 .errorMessage {
     color: red;
+    font-size: 0.8em;
+}
+  
+.labelName {
+    font-weight: bold;
+    color: #FF69B4; 
 }

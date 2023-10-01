@@ -1,49 +1,31 @@
 import { useState } from "react";
+import LoginForm from "../components/LoginForm";
+import SignUpForm from "../components/SignUpForm";
 import styles from "./LoginSignUpPage.module.css";
 
 const LoginSignUpPage = () => {
   const [action, setAction] = useState("Login");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission here
-  }
-
   return (
-    <div className={styles.loginSignUpContainer}>
-      <div className={styles.loginSignUpHeader}>
-        <div className={styles.loginSignUpText}>{action}</div>
-        <div className={styles.underline}></div>
-      </div>
-      <form className={styles.inputContainer} onSubmit={handleSubmit}>
-        <div className={styles.inputField}>
-          <input type="text" placeholder="username" id="username" name="username" />
-        </div>
-        {action === "Sign Up" && (
-          <div className={styles.inputField}>
-            <input type="email" placeholder="email" id="email" name="email" />
-          </div>
-        )}
-        <div className={styles.inputField}>
-          <input type="password" placeholder="password" id="password" name="password" />
-        </div>
-        <div className={styles.submitContainer}>
-          <button 
-            type="button" 
-            className={action === "Login" ? `${styles.submit} ${styles.active}` : styles.submit} 
-            onClick={() => setAction("Sign Up")}
-          >
-            Sign Up
-          </button>
-          <button 
-            type="submit" 
-            className={action === "Sign Up" ? `${styles.submit} ${styles.active}` : styles.submit} 
+    <div>
+      <div className={styles.actions}>
+        <nav className={styles.navContainer}>
+          <h3 
+            className={action === "Login" ? styles.active : ""} 
             onClick={() => setAction("Login")}
           >
             Login
-          </button>
-        </div>
-      </form>
+          </h3>
+          <h3 
+            className={action === "Sign up" ? styles.active : ""} 
+            onClick={() => setAction("Sign up")}
+          >
+            Sign up
+          </h3>
+        </nav>
+        <hr className={styles.separationLine}></hr>
+      </div>
+      {action === "Login" ? <LoginForm /> : <SignUpForm />};
     </div>
   );
 }

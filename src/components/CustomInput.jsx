@@ -1,14 +1,12 @@
 import { useField } from "formik";
 import styles from './CustomInput.module.css';
 
-//Take and object with needed fields -> props
 const CustomInput = ({label, ...props}) => {
     const [field, meta] = useField(props);
 
     return (
         <>
-        <label>{label}</label>
-        {/* Display the provided content (props)*/}
+        <label className={styles.labelName}>{label}</label>
         <input {...field}{...props}
         className={meta.touched && meta.error ? styles.inputError:""}
         />

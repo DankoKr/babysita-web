@@ -6,20 +6,26 @@ import styles from './CreatePosterPage.module.css';
 import CustomInput from '../components/CustomInput';
 
 const CreatePosterPage = () => {
-  //const { postData, setTitle, setDescription, setImage, setEventDate } = usePostRequest();
-  const onSubmit = async(resolve, actions)=> {
-    console.log("Hui");
-    actions.resetForm();  
+  const { postData } = usePostRequest();
+  
+  const onSubmit = async (values, actions) => {
+    //console.log("Submitting", values);
+    try {
+      await postData(values);
+      actions.resetForm();
+    } catch (error) {
+      console.error("Error in post request", error);
+    }
   }
 
   return (
     <Formik 
-    initialValues={{title: "", description: "", imageUrl: "", date: ""}} 
+    initialValues={{title: "", description: "", imageUrl: "", eventDate: ""}} 
     validationSchema={posterSchema}
     onSubmit={onSubmit}
     >
       {(props) => (
-        <Form>
+        <Form className={styles.form}>
           <CustomInput 
           label='Title'
           name='title'
@@ -40,11 +46,11 @@ const CreatePosterPage = () => {
           />
           <CustomInput 
           label='Date'
-          name='date'
+          name='eventDate'
           type='date'
           placeholder='Enter poster date'       
           />
-          <button type='submit'>Submit</button>
+          <button type='submit' className={styles.submitButton}>Submit</button>
         </Form>
       )}
 

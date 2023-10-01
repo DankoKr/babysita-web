@@ -1,4 +1,5 @@
 import styles from './Footer.module.css'
+import logo from '../assets/images/BABYSITA.png';
 
 const Footer = () => {
     return ( 
@@ -6,7 +7,7 @@ const Footer = () => {
             <div className={styles['container']}>
 
                 <div className={styles['logo']}>
-                    <img src="https://www.napnameplates.com/wp-content/uploads/vfb/2021/07/logo-with-transparent-background-463447_835x675.png" alt="Logo" />
+                    <img src={logo} alt="Logo" />
                 </div>
                 <div className={styles['column']}>
                     <h2>Dummy Title</h2>

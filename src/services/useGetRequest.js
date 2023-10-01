@@ -11,7 +11,6 @@ const useGetRequest = () => {
       const response = await axios(url);
       const responseData = new Map(Object.entries(response.data));
       setData(responseData);
-      console.log(responseData);
     } catch (error) {
       console.error(error.response);
     }

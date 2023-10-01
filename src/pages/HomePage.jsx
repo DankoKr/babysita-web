@@ -2,6 +2,7 @@ import React from 'react';
 import StepBox from '../components/StepBox';
 import styles from './HomePage.module.css';
 import ImageContainer from '../components/ImageContainer';
+import homePic from '../assets/images/homePic.png';
 
 const HomePage = () => {
   const steps = [
@@ -13,7 +14,7 @@ const HomePage = () => {
   return (
     <div className={styles.home}>
       <ImageContainer 
-        src="https://i.pinimg.com/originals/45/98/d9/4598d92a284816380fd1733d17a6e731.png"  
+        src={homePic}  alt="Main image"
       />
       <h2>How it works</h2>
       <br/>
