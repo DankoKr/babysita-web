@@ -1,18 +1,23 @@
+import { useEffect } from 'react';
 import useDeleteRequest from "../services/useDeleteRequest";
 import useGetRequest from "../services/useGetRequest";
 import styles from './AdminPage.module.css';
 import { NavLink } from "react-router-dom";
 
 const AdminPage = () => {
-    const posterData = useGetRequest();
+    const [posterData, fetchPosters] = useGetRequest();
     const deletePoster = useDeleteRequest();
 
-    const handleDelete = (id) => {
+    useEffect(() => {
+        fetchPosters();  
+    }, [fetchPosters]);
+
+    const handleDelete = async (id) => {
         const confirmDeletion = window.confirm("Are you sure you want to delete?");
         if (confirmDeletion) {
-            deletePoster(id); 
-            window.location.reload();
-        };
+            await deletePoster(id);
+            fetchPosters();  // Refetch the data after deleting a poster
+        }
     };
 
     if (!posterData) 

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { posterSchema } from '../schemas/posterSchema';
@@ -9,17 +10,21 @@ import styles from './CreatePosterPage.module.css';
 const EditPosterPage = () => {
     const { id } = useParams();
     const { putData } = usePutRequest();
-    const poster = useGetByIdRequest(id);
+    const [poster, fetchDataById] = useGetByIdRequest();
     const navigate  = useNavigate();
+
+    useEffect(() => {
+        fetchDataById(Number(id));
+    }, [id, fetchDataById]);
   
     const onSubmit = async (values, actions) => {
-      try {
-          await putData(id, values);
-          actions.resetForm();
-          navigate(-1);
-      } catch (error) {
-          console.error(error);
-      }
+        try {
+            await putData(id, values);
+            actions.resetForm();
+            navigate(-1);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     if (!poster) {
@@ -67,3 +72,4 @@ const EditPosterPage = () => {
 }
  
 export default EditPosterPage;
+
