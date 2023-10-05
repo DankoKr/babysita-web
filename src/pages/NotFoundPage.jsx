@@ -1,14 +1,29 @@
-import { NavLink } from "react-router-dom";
-import styles from './NotFoundPage.module.css'
+import { NavLink, useLocation } from "react-router-dom";
+import styles from './NotFoundPage.module.css';
 
-const NotFoundPage = () => {
+const NotFoundPage = (props) => {
+    const location = useLocation();
+    const errorMessage = location.state?.errorMessage || props.error;
+
     return (
         <div className={styles.notFound}>
-            <h1>404 Not Found</h1>
-            <p>The page you're looking for doesn't exist.</p>     
+            {
+                errorMessage 
+                ? (
+                    <>
+                        <h1>The Current Error Accured:</h1> 
+                        <p>{errorMessage}</p>
+                    </>
+                ) 
+                : (
+                    <>
+                        <h1>404 Not Found</h1> 
+                        <p>The page you're looking for doesn't exist.</p>
+                    </>
+                )
+            }
             <NavLink to="/">Back to Home</NavLink>
         </div>
-
     );
 }
  
