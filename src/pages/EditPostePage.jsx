@@ -15,7 +15,7 @@ const EditPosterPage = () => {
 
     useEffect(() => {
         fetchDataById(Number(id));
-    }, [id, fetchDataById]);
+    }, [id]);
   
     const onSubmit = async (values, actions) => {
         try {

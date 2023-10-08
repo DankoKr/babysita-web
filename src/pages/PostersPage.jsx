@@ -8,7 +8,7 @@ const PosterPage = () => {
 
   useEffect(() => {
     fetchPosters(); 
-  }, [fetchPosters]);
+  }, []);
 
   if (posterData.size === 0) return <p className={styles.loadingMessage}>Loading...</p>;
 
@@ -16,7 +16,7 @@ const PosterPage = () => {
     <div className={styles.posterContainer}>
       {[...posterData.values()].map((poster) => (
         <div className={styles.posterData} key={poster.id}> 
-          <Poster id={poster.id}/>
+          <Poster poster={poster}/>
         </div>
       ))}
     </div>

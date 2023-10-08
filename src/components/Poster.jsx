@@ -1,14 +1,6 @@
-import { useEffect } from 'react';
-import useGetByIdRequest from "../services/useGetByIdRequest";
 import styles from './Poster.module.css';
 
-const Poster = ({ id }) => {
-    const [poster, fetchDataById] = useGetByIdRequest();
-
-    useEffect(() => {
-        fetchDataById(Number(id));
-    }, [id, fetchDataById]); 
-
+const Poster = ({ poster }) => {
     return (
         <div className={styles.posterContainer}>
             {poster ? (

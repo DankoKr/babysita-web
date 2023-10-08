@@ -9,7 +9,6 @@ const CreatePosterPage = () => {
   const { postData } = usePostRequest();
   
   const onSubmit = async (values, actions) => {
-    //console.log("Submitting", values);
     try {
       await postData(values);
       actions.resetForm();
@@ -20,7 +19,7 @@ const CreatePosterPage = () => {
 
   return (
     <Formik 
-    initialValues={{title: "", description: "", imageUrl: "", eventDate: ""}} 
+    initialValues={{title: "", description: "", imageUrl: "", eventDate: "", isAppointed: false}} 
     validationSchema={posterSchema}
     onSubmit={onSubmit}
     >

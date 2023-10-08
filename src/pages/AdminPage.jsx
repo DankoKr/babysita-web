@@ -10,7 +10,7 @@ const AdminPage = () => {
 
     useEffect(() => {
         fetchPosters();  
-    }, [fetchPosters]);
+    }, []);
 
     const handleDelete = async (id) => {
         const confirmDeletion = window.confirm("Are you sure you want to delete?");
