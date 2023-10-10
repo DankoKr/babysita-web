@@ -4,6 +4,7 @@ import { Formik, Form } from 'formik';
 import { posterSchema } from '../schemas/posterSchema';
 import styles from './CreatePosterPage.module.css';
 import CustomInput from '../components/CustomInput';
+import Button from '../components/Button';
 
 const CreatePosterPage = () => {
   const { postData } = usePostRequest();
@@ -19,7 +20,8 @@ const CreatePosterPage = () => {
 
   return (
     <Formik 
-    initialValues={{title: "", description: "", imageUrl: "", eventDate: "", isAppointed: false}} 
+    initialValues={{title: "", description: "", imageUrl: "", eventDate: "",
+     parentId: 1, babysitterId: 1}} 
     validationSchema={posterSchema}
     onSubmit={onSubmit}
     >
@@ -49,7 +51,7 @@ const CreatePosterPage = () => {
           type='date'
           placeholder='Enter poster date'       
           />
-          <button type='submit' className={styles.submitButton}>Submit</button>
+          <Button type='submit' text='Submit'/>
         </Form>
       )}
 

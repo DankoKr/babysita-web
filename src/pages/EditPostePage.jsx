@@ -6,6 +6,7 @@ import CustomInput from '../components/CustomInput';
 import usePutRequest from '../services/usePutRequest';
 import useGetByIdRequest from '../services/useGetByIdRequest';
 import styles from './CreatePosterPage.module.css';
+import Button from '../components/Button';
 
 const EditPosterPage = () => {
     const { id } = useParams();
@@ -37,7 +38,9 @@ const EditPosterPage = () => {
                 title: poster.title || "",
                 description: poster.description || "",
                 imageUrl: poster.imageUrl || "",
-                eventDate: poster.eventDate || ""
+                eventDate: poster.eventDate || "",
+                parentId: poster.parentId, 
+                babysitterId: poster.babysitterId
             }}                
             validationSchema={posterSchema}
             onSubmit={onSubmit}
@@ -64,7 +67,7 @@ const EditPosterPage = () => {
                         name='eventDate'
                         type='date'    
                     />
-                    <button type='submit' className={styles.submitButton}>Submit</button>
+                    <Button type='submit' text='Submit'/>
                 </Form>
             )}
         </Formik>

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Poster from '../components/Poster';
 import styles from './ViewPosterPage.module.css';
 import useGetByIdRequest from '../services/useGetByIdRequest';
+import Button from '../components/Button';
 
 const ViewPosterPage = () => {
     const { id } = useParams();
@@ -23,7 +24,7 @@ const ViewPosterPage = () => {
             <div>
                 <Poster poster={poster} />
             </div>
-            <button className={styles.button} onClick={handleGoBack}>Go Back</button>
+            <Button onClick={handleGoBack} text='Go Back'/>
         </div>
     );
 };

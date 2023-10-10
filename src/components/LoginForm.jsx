@@ -2,6 +2,7 @@ import { Formik, Form } from 'formik';
 import { loginSchema } from '../schemas/loginSchema';
 import CustomInput from './CustomInput';
 import styles from "./LoginForm.module.css";
+import Button from './Button';
 
 const LoginForm = () => {
     const onSubmit = async (values, actions) => {
@@ -33,7 +34,7 @@ const LoginForm = () => {
           type='password'
           placeholder='Enter password'       
           />
-          <button type='submit' className={styles.submitBtn}>Login</button>
+          <Button type='submit' text='Login'/>
         </Form>
       )}
 

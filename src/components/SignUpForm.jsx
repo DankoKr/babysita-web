@@ -2,6 +2,7 @@ import { Formik, Form } from 'formik';
 import { signUpSchema } from '../schemas/signUpSchema';
 import CustomInput from './CustomInput';
 import styles from "./LoginForm.module.css";
+import Button from './Button';
 
 const SignUpForm = () => {
     const onSubmit = async (values, actions) => {
@@ -15,7 +16,7 @@ const SignUpForm = () => {
 
     return (
         <Formik 
-    initialValues={{username: "", password: ""}} 
+    initialValues={{username: "", password: "", email: "", confirmPassword: ""}} 
     validationSchema={signUpSchema}
     onSubmit={onSubmit}
     >
@@ -45,7 +46,7 @@ const SignUpForm = () => {
           type='password'
           placeholder='Confirm password'       
           />
-          <button type='submit' className={styles.submitBtn}>Sign Up</button>
+          <Button type='submit' text='Sign Up' />
         </Form>
       )}
 
