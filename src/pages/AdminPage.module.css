@@ -1,0 +1,53 @@
+.loadingMessage {
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 2rem 0;
+}
+
+.tableContainer {
+    overflow-x: auto;
+    margin-top: 2rem;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    word-wrap: break-word;  
+    max-width: 300px;       
+    overflow: hidden;       
+}
+
+th:last-child, td:last-child { 
+    width: 1%;
+    white-space: nowrap; 
+}
+
+.viewButton, .deleteButton, .editButton {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 0cm;
+    border-radius: 10%;
+}
+
+.deleteButton {
+    background-color: red;
+    color: #fff;
+}
+
+.editButton {
+    background-color: #ffa500;
+    color: #fff;
+}
+
+.viewButton {
+    background-color: #4CAF50;
+    color: #fff;
+}

@@ -1,18 +1,22 @@
+import { useEffect } from "react";
+import Poster from "../components/Poster";
 import useGetRequest from "../services/useGetRequest";
+import styles from './PostersPage.module.css';
 
 const PosterPage = () => {
-  const posterData = useGetRequest();
+  const [posterData, fetchPosters] = useGetRequest();
 
-  if (posterData.size === 0) return <p>Loading...</p>;
+  useEffect(() => {
+    fetchPosters(); 
+  }, []);
+
+  if (posterData.size === 0) return <p className={styles.loadingMessage}>Loading...</p>;
 
   return (
-    <div className="posterContainer">
-      {/* Convert to array */}
-      {[...posterData.values()].map((poster, index) => (
-        <div className="posterData" key={index}>
-          <h2>Poster Information</h2>
-          <p><strong>Title:</strong> {poster.title}</p>
-          <p><strong>Description:</strong> {poster.description}</p>
+    <div className={styles.posterContainer}>
+      {[...posterData.values()].map((poster) => (
+        <div className={styles.posterData} key={poster.id}> 
+          <Poster poster={poster}/>
         </div>
       ))}
     </div>
@@ -20,4 +24,5 @@ const PosterPage = () => {
 };
 
 export default PosterPage;
+
 
