@@ -3,14 +3,20 @@ import { loginSchema } from '../schemas/loginSchema';
 import CustomInput from './CustomInput';
 import styles from "./LoginForm.module.css";
 import Button from './Button';
+import { useState } from 'react';
+import TokenManager from '../services/TokenManager';
+import useAuthJwtToken from '../services/useAuthJwtToken';
 
 const LoginForm = () => {
-    const onSubmit = async (values, actions) => {
-        try {//not yet implemented
-          console.log("Submited")
-          actions.resetForm();
+  const login = useAuthJwtToken();
+  //const [claims, setClaims] = useState(TokenManager.getClaims());
+
+    const onSubmit = async (values) => {
+        try {
+          await login(values.username, values.password);
+          console.log('Works?');
         } catch (error) {
-          console.error("Error in get request", error);
+          console.log('Invalid...');
         }
       }
 
