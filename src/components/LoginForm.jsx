@@ -4,21 +4,23 @@ import CustomInput from './CustomInput';
 import styles from "./LoginForm.module.css";
 import Button from './Button';
 import { useState } from 'react';
-import TokenManager from '../services/TokenManager';
 import useAuthJwtToken from '../services/useAuthJwtToken';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const login = useAuthJwtToken();
-  //const [claims, setClaims] = useState(TokenManager.getClaims());
+  const [loginError, setLoginError] = useState(null);
+  const navigate = useNavigate();
 
-    const onSubmit = async (values) => {
-        try {
-          await login(values.username, values.password);
-          console.log('Works?');
-        } catch (error) {
-          console.log('Invalid...');
-        }
-      }
+  const onSubmit = async (values) => {
+    try {
+        await login(values.username, values.password);
+        navigate("/account");
+    } catch (error) {
+        console.error(error);
+        setLoginError("Login failed!");
+    }
+  }
 
     return (
         <Formik 
