@@ -1,15 +1,18 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { useContext } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import AuthContext from '../auth/AuthContext'; 
 
-const ProtectedRoute = ({
-    isAllowed,
-    redirectPath = '/login',
-    children,
-  }) => {
-    if (!isAllowed) {
-      return <Navigate to={redirectPath} replace />;
-    }
-  
-    return children ? children : <Outlet />;
+const ProtectedRoute = ({ isAllowed, children }) => {
+  const { user } = useContext(AuthContext);
+  const isLoggedIn = !!user;
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  } else if (!isAllowed) {
+    return <Navigate to="/denied" replace />;
+  }
+
+  return children ? children : <Outlet />;
 }
- 
+
 export default ProtectedRoute;

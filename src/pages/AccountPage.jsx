@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styles from './AccountPage.module.css';
 import useGetUserByIdRequest from '../services/useGetUserByIdRequest';
-import TokenManager from '../services/TokenManager';
+import TokenManager from '../auth/TokenManager';
 
 const AccountPage = () => {
     const { user, fetchDataById } = useGetUserByIdRequest(TokenManager.getAccessToken());

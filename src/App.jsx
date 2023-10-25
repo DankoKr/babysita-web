@@ -11,13 +11,18 @@ import AdminPage from './pages/AdminPage';
 import ViewPosterPage from './pages/ViewPosterPage';
 import EditPosterPage from './pages/EditPostePage';
 import NotFoundPage from './pages/NotFoundPage';
-import { useState } from 'react';
 import ProtectedRoute from './components/ProtectedRoute';
 import AccessDeniedPage from './pages/AccessDeniedPage';
+import { useContext } from 'react';
+import AuthContext from './auth/AuthContext'; 
 
 function App() {
-  //const [user, setUser] = useState(null);
-  const user = {id: '1', name: 'robin', role: 'parent'};
+  const { user } = useContext(AuthContext);
+  console.log(user);
+  const isLoggedIn = !!user;
+  const isAdmin = user?.role === 'admin';
+  const isParent = user?.role === 'parent' || user?.role === 'admin';
+  const isBabysitter = user?.role === 'babysitter' || user?.role === 'admin';
 
   return (
     <Router>
@@ -29,28 +34,27 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<LoginSignUpPage />} />
 
-              <Route element={<ProtectedRoute redirectPath='/denied' isAllowed={!!user} />}>
+              <Route element={<ProtectedRoute isAllowed={isLoggedIn} />}>
                 <Route path="/account" element={<AccountPage />} />
                 <Route path="/view/:id" element={<ViewPosterPage />} />
-                <Route path="/denied" element={<AccessDeniedPage />}/>
               </Route>
 
-              <Route element={<ProtectedRoute redirectPath='/denied' isAllowed={!!user && user.role==='admin' || user.role==='parent'} />}>
+              <Route element={<ProtectedRoute isAllowed={isParent} />}>
                 <Route path="/create-poster" element={<CreatePosterPage />} />
                 <Route path="/edit/:id" element={<EditPosterPage />} />
-                <Route path="/view/:id" element={<ViewPosterPage />} />
               </Route>
 
-              <Route element={<ProtectedRoute redirectPath='/denied' isAllowed={!!user && user.role==='admin' || user.role==='babysitter'} />}>
+              <Route element={<ProtectedRoute isAllowed={isBabysitter} />}>
                 <Route path="/posters" element={<PosterPage />} />
               </Route>
 
               <Route path="/admin" element={
-                <ProtectedRoute redirectPath='/denied' isAllowed={!!user && user.role==='admin'}>
+                <ProtectedRoute isAllowed={isAdmin}>
                   <AdminPage />
                 </ProtectedRoute>
               } />
-
+              
+              <Route path="/denied" element={<AccessDeniedPage />}/>
               <Route path="*" element={<NotFoundPage />}/>
             </Routes>
           </div>
@@ -62,4 +66,5 @@ function App() {
 }
 
 export default App;
+
 

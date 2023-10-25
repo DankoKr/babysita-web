@@ -1,22 +1,23 @@
 import axios from "axios";
-import TokenManager from './TokenManager';
+import { useContext } from "react";
+import AuthContext from "../auth/AuthContext";
 
 const url = "http://localhost:8080/tokens";
 
 const useAuthJwtToken = () => {
-  const login = async (username, password) => {
+  const { login } = useContext(AuthContext);
+
+  const performLogin = async (username, password) => {
     try {
       const resp = await axios.post(url, {username, password});
-      TokenManager.setAccessToken(resp.data.accessToken);
-
+      login(resp.data.accessToken);
     } catch (error) {
-        console.error("Login error:", error.response.data);
-      throw error;
+        console.error("Login error:", error.response && error.response.data, error);
+        throw error;
     }
-};
-  
-  return login;
-  
+  };
+
+  return performLogin;
 };
 
 export default useAuthJwtToken;
