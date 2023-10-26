@@ -27,7 +27,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        <Navbar user={user}/>
         <div className="wrapper">
           <div className="content">
             <Routes>
