@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styles from './AccountPage.module.css';
 import useGetUserByIdRequest from '../services/useGetUserByIdRequest';
 import TokenManager from '../auth/TokenManager';
+import AccountBox from '../components/AccountBox';
 
 const AccountPage = () => {
     const { user, fetchDataById } = useGetUserByIdRequest(TokenManager.getAccessToken());
@@ -22,10 +23,7 @@ const AccountPage = () => {
     return ( 
         <div className={styles.accountContainer}>
             <div className={styles.accountData}>
-                <h2>Account Information</h2>
-                <p><strong>Username:</strong> {user.username}</p>
-                <p><strong>Email:</strong> {user.email}</p>
-                <p><strong>Role:</strong> {user.role}</p>
+              <AccountBox user={user}/>
             </div>
         </div>
     );
