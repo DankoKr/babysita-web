@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import usePostPosterRequest from '../services/usePostPosterRequest';
 import { Formik, Form } from 'formik';
 import { posterSchema } from '../schemas/posterSchema';
@@ -6,9 +6,11 @@ import styles from './CreatePosterPage.module.css';
 import CustomInput from '../components/CustomInput';
 import Button from '../components/Button';
 import TokenManager from '../auth/TokenManager';
+import AuthContext from '../auth/AuthContext';
 
 const CreatePosterPage = () => {
   const { postData } = usePostPosterRequest(TokenManager.getAccessToken());
+  const { user } = useContext(AuthContext);
   
   const onSubmit = async (values, actions) => {
     try {
@@ -22,7 +24,7 @@ const CreatePosterPage = () => {
   return (
     <Formik 
     initialValues={{title: "", description: "", imageUrl: "", eventDate: "",
-     parentId: 1, babysitterId: 1}} 
+     parentId: user.userId, babysitterId: 0}} 
     validationSchema={posterSchema}
     onSubmit={onSubmit}
     >

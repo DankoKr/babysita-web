@@ -15,9 +15,7 @@ const LoginForm = () => {
   const onSubmit = async (values) => {
     try {
         await login(values.username, values.password);
-        console.log("Logged in");
         navigate("/account");
-        console.log("Didnt navigate");
     } catch (error) {
         console.error("Login error: ", error);
         if (error.response && error.response.data && error.response.data.message) {

@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const url = "http://localhost:8080/posters";
+const url = "http://localhost:8080";
 
-const useDeleteRequest = (accessToken) => {
-    const deletePoster = async (id) => {
+const useDeleteRequest = (urlExtension, accessToken) => {
+    const deleteData = async (id) => {
         try {
-            await axios.delete(`${url}/${id}`, {
+            await axios.delete(`${url + urlExtension}/${id}`, {
                 headers: { Authorization: `Bearer ${accessToken}` }
             });
         } catch (error) {
@@ -13,7 +13,7 @@ const useDeleteRequest = (accessToken) => {
         }
     };
 
-    return deletePoster;
+    return deleteData;
 };
 
 

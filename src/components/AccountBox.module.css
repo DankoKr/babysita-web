@@ -8,9 +8,10 @@
 
 .accountCard {
     width: 350px;
-    background-color: #efefef;
+    background-color: #FFF7E5;
     border: none;
     transition: all 0.5s;
+    border-radius: 10px;
 }
 
 .image img {
@@ -70,7 +71,6 @@
     margin: 0 auto;
 }
 
-.text h3 {
-    grid-column: 1 / -1;
-    margin-bottom: 5px;
+.text span{
+    color: #FF69B4;
 }
