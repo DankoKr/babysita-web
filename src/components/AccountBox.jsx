@@ -38,6 +38,7 @@ const AccountBox = ({user}) => {
                       <p>Age: {user.age}</p>
                       <p>Points: {user.age}</p>
                     </div>
+                    <Button text={"Logout"} onClick={logout}/>
                 </div>
             </div>
         </div>

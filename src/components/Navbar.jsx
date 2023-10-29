@@ -7,6 +7,7 @@ const Navbar = ({ user }) => {
     { path:     "/login",          name: "Login",             isMenu: false,    isPrivate: false,   role: "any"},
     { path:     "/account",        name: "Account",           isMenu: true,     isPrivate: true,    role: "any"},
     { path:     "/create-poster",  name: "Create Poster",     isMenu: true,     isPrivate: true,    role: "parent"},
+    { path:     "/babysitters",    name: "Babysitters",       isMenu: true,     isPrivate: true,    role: "parent"},
     { path:     "/posters",        name: "Posters",           isMenu: true,     isPrivate: true,    role: "babysitter"},
     { path:     "/admin",          name: "PosterTable",       isMenu: true,     isPrivate: true,    role: "admin"},
   ]

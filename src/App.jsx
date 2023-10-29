@@ -15,6 +15,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import AccessDeniedPage from './pages/AccessDeniedPage';
 import { useContext } from 'react';
 import AuthContext from './auth/AuthContext'; 
+import BabysittersPage from './pages/BabysittersPage';
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -42,6 +43,7 @@ function App() {
               <Route element={<ProtectedRoute isAllowed={isParent} />}>
                 <Route path="/create-poster" element={<CreatePosterPage />} />
                 <Route path="/edit/:id" element={<EditPosterPage />} />
+                <Route path="/babysitters" element={<BabysittersPage />} />
               </Route>
 
               <Route element={<ProtectedRoute isAllowed={isBabysitter} />}>
