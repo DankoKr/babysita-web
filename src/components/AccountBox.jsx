@@ -1,7 +1,22 @@
+import { useContext } from 'react';
+import useDeleteRequest from '../services/useDeleteRequest';
 import styles from './AccountBox.module.css';
 import Button from './Button';
+import TokenManager from '../auth/TokenManager';
+import AuthContext from "../auth/AuthContext";
 
 const AccountBox = ({user}) => {
+    const { logout } = useContext(AuthContext);
+    const deleteAccount = useDeleteRequest("/users", TokenManager.getAccessToken());
+
+    const handleDelete = async () => {
+        const confirmDeletion = window.confirm("Are you sure you want to delete your account?");
+        if (confirmDeletion) {
+            await deleteAccount(user.id);
+            logout();
+        }
+    };
+
     return (
         <div className={styles.accountBox}>
             <div className={styles.accountCard}>
@@ -13,7 +28,7 @@ const AccountBox = ({user}) => {
                     <span className={styles.email}>{user.email}</span>
                     <div className={styles.buttonsBox}>
                         <Button text={"Edit profile"}/>
-                        <Button text={"Delete profile"}/>
+                        <Button text={"Delete profile"} onClick={handleDelete}/>
                     </div>
                     <div className={styles.text}>
                       <h3>Details: </h3>

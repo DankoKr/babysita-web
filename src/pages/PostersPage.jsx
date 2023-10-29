@@ -2,9 +2,10 @@ import { useEffect } from "react";
 import Poster from "../components/Poster";
 import useGetRequest from "../services/useGetRequest";
 import styles from './PostersPage.module.css';
+import TokenManager from "../auth/TokenManager";
 
 const PosterPage = () => {
-  const [posterData, fetchPosters] = useGetRequest();
+  const [posterData, fetchPosters] = useGetRequest("/posters", TokenManager.getAccessToken());
 
   useEffect(() => {
     fetchPosters(); 

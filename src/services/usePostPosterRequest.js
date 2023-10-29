@@ -2,10 +2,12 @@ import axios from "axios";
 
 const url = "http://localhost:8080/posters";
 
-const usePostRequest = () => {
+const usePostPosterRequest = (accessToken) => {
   const postData = async (values) => {
     try {
-      const resp = await axios.post(url, values);
+      await axios.post(url, values, {
+        headers: { Authorization: `Bearer ${accessToken}` }
+      });
     } catch (error) {
       console.error(error.response);
       throw error;
@@ -17,4 +19,4 @@ const usePostRequest = () => {
   
 };
 
-export default usePostRequest;
+export default usePostPosterRequest;

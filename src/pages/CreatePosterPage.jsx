@@ -1,13 +1,14 @@
 import React from 'react';
-import usePostRequest from '../services/usePostRequest';
+import usePostPosterRequest from '../services/usePostPosterRequest';
 import { Formik, Form } from 'formik';
 import { posterSchema } from '../schemas/posterSchema';
 import styles from './CreatePosterPage.module.css';
 import CustomInput from '../components/CustomInput';
 import Button from '../components/Button';
+import TokenManager from '../auth/TokenManager';
 
 const CreatePosterPage = () => {
-  const { postData } = usePostRequest();
+  const { postData } = usePostPosterRequest(TokenManager.getAccessToken());
   
   const onSubmit = async (values, actions) => {
     try {

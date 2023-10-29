@@ -3,10 +3,11 @@ import useDeleteRequest from "../services/useDeleteRequest";
 import useGetRequest from "../services/useGetRequest";
 import styles from './AdminPage.module.css';
 import { NavLink } from "react-router-dom";
+import TokenManager from "../auth/TokenManager";
 
 const AdminPage = () => {
-    const [posterData, fetchPosters] = useGetRequest();
-    const deletePoster = useDeleteRequest();
+    const [posterData, fetchPosters] = useGetRequest("/posters", TokenManager.getAccessToken());
+    const deletePoster = useDeleteRequest(TokenManager.getAccessToken());
 
     useEffect(() => {
         fetchPosters();  
