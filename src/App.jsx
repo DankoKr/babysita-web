@@ -16,6 +16,7 @@ import AccessDeniedPage from './pages/AccessDeniedPage';
 import { useContext } from 'react';
 import AuthContext from './auth/AuthContext'; 
 import BabysittersPage from './pages/BabysittersPage';
+import MyPostersPage from './pages/MyPostersPage';
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -38,6 +39,7 @@ function App() {
               <Route element={<ProtectedRoute isAllowed={isLoggedIn} />}>
                 <Route path="/account" element={<AccountPage />} />
                 <Route path="/view/:id" element={<ViewPosterPage />} />
+                <Route path="/my-posters" element={<MyPostersPage />} />
               </Route>
 
               <Route element={<ProtectedRoute isAllowed={isParent} />}>
