@@ -9,7 +9,7 @@ import PosterPage from './pages/PostersPage';
 import CreatePosterPage from './pages/CreatePosterPage';
 import AdminPage from './pages/AdminPage';
 import ViewPosterPage from './pages/ViewPosterPage';
-import EditPosterPage from './pages/EditPostePage';
+import EditPosterPage from './pages/EditPosterPage';
 import NotFoundPage from './pages/NotFoundPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import AccessDeniedPage from './pages/AccessDeniedPage';

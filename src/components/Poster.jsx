@@ -1,6 +1,14 @@
 import styles from './Poster.module.css';
+import Button from '../components/Button';
+import { useNavigate } from 'react-router-dom';
 
-const Poster = ({ poster }) => {
+const Poster = ({ poster, isEditable }) => {
+    const navigate = useNavigate();
+
+    const handleEditClick = (posterId) => {
+        navigate(`/edit/${posterId}`);
+    };
+
     return (
         <div className={styles.posterContainer}>
             {poster ? (
@@ -10,6 +18,7 @@ const Poster = ({ poster }) => {
                     <img src={poster.imageUrl} alt={"Poster image"} />
                     <p><strong>Description:</strong> {poster.description}</p>
                     <p><strong>Date:</strong> {poster.eventDate}</p>
+                    {isEditable && <Button text='Edit' onClick={() => handleEditClick(poster.id)}/>}
                 </div>
             ) : (
                 <p>No poster data available.</p>

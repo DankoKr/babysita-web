@@ -16,7 +16,7 @@ const MyPostersPage = () => {
   if (posterData.length === 0) return <p className={styles.loadingMessage}>No data...</p>;
 
   return (
-    <PostersWrapper posterData={posterData} userId={user.id}/>
+    <PostersWrapper posterData={posterData} isEditable={user.role === 'parent'}/>
   );
 };
 

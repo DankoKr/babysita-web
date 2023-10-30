@@ -4,13 +4,15 @@ import { useNavigate } from "react-router-dom";
 
 const url = "http://localhost:8080/posters";
 
-const useGetByIdRequest = () => {
+const useGetByIdRequest = (accessToken) => {
     const [poster, setPoster] = useState(null);
     const navigate = useNavigate();
 
     const fetchDataById = async (id) => {
         try {
-            const response = await axios.get(`${url}/${id}`);
+            const response = await axios.get(`${url}/${id}`, {
+                headers: { Authorization: `Bearer ${accessToken}` }
+            });
             setPoster(response.data);
         } catch (error) {
             let errorMessage = '';
