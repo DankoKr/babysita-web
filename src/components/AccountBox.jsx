@@ -55,7 +55,7 @@ const AccountBox = ({ user }) => {
                         <p>Points: 1111111</p>
                     </div>
                     <div className={styles.buttonsBox}>
-                        <Button text={"Delete profile"} onClick={handleDelete} />
+                        {user.role != "admin" && <Button text={"Delete profile"} onClick={handleDelete} />}
                         <Button text={"Logout"} onClick={logout} />
                     </div>
                 </div>

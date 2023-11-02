@@ -1,35 +1,36 @@
-import './App.css';
-import Navbar from './components/Navbar';
-import HomePage from './pages/HomePage';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Footer from './components/Footer';
-import LoginSignUpPage from './pages/LoginSignUpPage';
-import AccountPage from './pages/AccountPage';
-import PosterPage from './pages/PostersPage';
-import CreatePosterPage from './pages/CreatePosterPage';
-import AdminPage from './pages/AdminPage';
-import ViewPosterPage from './pages/ViewPosterPage';
-import EditPosterPage from './pages/EditPosterPage';
-import NotFoundPage from './pages/NotFoundPage';
-import ProtectedRoute from './components/ProtectedRoute';
-import AccessDeniedPage from './pages/AccessDeniedPage';
-import { useContext } from 'react';
-import AuthContext from './auth/AuthContext'; 
-import BabysittersPage from './pages/BabysittersPage';
-import MyPostersPage from './pages/MyPostersPage';
+import "./App.css";
+import Navbar from "./components/Navbar";
+import HomePage from "./pages/HomePage";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Footer from "./components/Footer";
+import LoginSignUpPage from "./pages/LoginSignUpPage";
+import AccountPage from "./pages/AccountPage";
+import PosterPage from "./pages/PostersPage";
+import CreatePosterPage from "./pages/CreatePosterPage";
+import PostersManagementPage from "./pages/PostersManagementPage";
+import ViewPosterPage from "./pages/ViewPosterPage";
+import EditPosterPage from "./pages/EditPosterPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import AccessDeniedPage from "./pages/AccessDeniedPage";
+import { useContext } from "react";
+import AuthContext from "./auth/AuthContext";
+import BabysittersPage from "./pages/BabysittersPage";
+import MyPostersPage from "./pages/MyPostersPage";
+import UsersManagementPage from "./pages/UsersManagementPage";
 
 function App() {
   const { user } = useContext(AuthContext);
   console.log(user);
   const isLoggedIn = !!user;
-  const isAdmin = user?.role === 'admin';
-  const isParent = user?.role === 'parent' || user?.role === 'admin';
-  const isBabysitter = user?.role === 'babysitter' || user?.role === 'admin';
+  const isAdmin = user?.role === "admin";
+  const isParent = user?.role === "parent" || user?.role === "admin";
+  const isBabysitter = user?.role === "babysitter" || user?.role === "admin";
 
   return (
     <Router>
       <div className="App">
-        <Navbar user={user}/>
+        <Navbar user={user} />
         <div className="wrapper">
           <div className="content">
             <Routes>
@@ -38,13 +39,13 @@ function App() {
 
               <Route element={<ProtectedRoute isAllowed={isLoggedIn} />}>
                 <Route path="/account" element={<AccountPage />} />
-                <Route path="/view/:id" element={<ViewPosterPage />} />
+                <Route path="/view-poster/:id" element={<ViewPosterPage />} />
                 <Route path="/my-posters" element={<MyPostersPage />} />
               </Route>
 
               <Route element={<ProtectedRoute isAllowed={isParent} />}>
                 <Route path="/create-poster" element={<CreatePosterPage />} />
-                <Route path="/edit/:id" element={<EditPosterPage />} />
+                <Route path="/edit-poster/:id" element={<EditPosterPage />} />
                 <Route path="/babysitters" element={<BabysittersPage />} />
               </Route>
 
@@ -52,14 +53,16 @@ function App() {
                 <Route path="/posters" element={<PosterPage />} />
               </Route>
 
-              <Route path="/admin" element={
-                <ProtectedRoute isAllowed={isAdmin}>
-                  <AdminPage />
-                </ProtectedRoute>
-              } />
-              
-              <Route path="/denied" element={<AccessDeniedPage />}/>
-              <Route path="*" element={<NotFoundPage />}/>
+              <Route element={<ProtectedRoute isAllowed={isAdmin} />}>
+                <Route
+                  path="/posters-table"
+                  element={<PostersManagementPage />}
+                />
+                <Route path="/users-table" element={<UsersManagementPage />} />
+              </Route>
+
+              <Route path="/denied" element={<AccessDeniedPage />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </div>
           <Footer />
@@ -70,5 +73,3 @@ function App() {
 }
 
 export default App;
-
-
