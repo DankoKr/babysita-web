@@ -43,6 +43,7 @@ const PostersManagementPage = () => {
       handleDelete={handleDelete}
       columns={columns}
       urlExtension={"poster"}
+      isEditable={true}
     />
   );
 };

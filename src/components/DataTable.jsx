@@ -1,7 +1,13 @@
 import { NavLink } from "react-router-dom";
 import styles from "./DataTable.module.css";
 
-const DataTable = ({ data, handleDelete, columns, urlExtension }) => {
+const DataTable = ({
+  data,
+  handleDelete,
+  columns,
+  urlExtension,
+  isEditable,
+}) => {
   return (
     <div className={styles.tableContainer}>
       <table>
@@ -26,12 +32,14 @@ const DataTable = ({ data, handleDelete, columns, urlExtension }) => {
                 >
                   View
                 </NavLink>
-                <NavLink
-                  to={`/edit-${urlExtension}/${id}`}
-                  className={styles.editButton}
-                >
-                  Edit
-                </NavLink>
+                {isEditable && (
+                  <NavLink
+                    to={`/edit-${urlExtension}/${id}`}
+                    className={styles.editButton}
+                  >
+                    Edit
+                  </NavLink>
+                )}
                 <button
                   onClick={() => handleDelete(id)}
                   className={styles.deleteButton}

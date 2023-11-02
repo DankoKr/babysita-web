@@ -40,6 +40,7 @@ const UsersManagementPage = () => {
       handleDelete={handleDelete}
       columns={columns}
       urlExtension={"user"}
+      isEditable={false}
     />
   );
 };
