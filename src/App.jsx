@@ -18,6 +18,7 @@ import AuthContext from "./auth/AuthContext";
 import BabysittersPage from "./pages/BabysittersPage";
 import MyPostersPage from "./pages/MyPostersPage";
 import UsersManagementPage from "./pages/UsersManagementPage";
+import ViewUserPage from "./pages/ViewUserPage";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -59,6 +60,7 @@ function App() {
                   element={<PostersManagementPage />}
                 />
                 <Route path="/users-table" element={<UsersManagementPage />} />
+                <Route path="/view-user/:id" element={<ViewUserPage />} />
               </Route>
 
               <Route path="/denied" element={<AccessDeniedPage />} />
