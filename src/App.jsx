@@ -19,10 +19,10 @@ import BabysittersPage from "./pages/BabysittersPage";
 import MyPostersPage from "./pages/MyPostersPage";
 import UsersManagementPage from "./pages/UsersManagementPage";
 import ViewUserPage from "./pages/ViewUserPage";
+import JobApplicationPage from "./pages/JobApplicationsPage";
 
 function App() {
   const { user } = useContext(AuthContext);
-  console.log(user);
   const isLoggedIn = !!user;
   const isAdmin = user?.role === "admin";
   const isParent = user?.role === "parent" || user?.role === "admin";
@@ -42,6 +42,10 @@ function App() {
                 <Route path="/account" element={<AccountPage />} />
                 <Route path="/view-poster/:id" element={<ViewPosterPage />} />
                 <Route path="/my-posters" element={<MyPostersPage />} />
+                <Route
+                  path="/my-job-applications"
+                  element={<JobApplicationPage />}
+                />
               </Route>
 
               <Route element={<ProtectedRoute isAllowed={isParent} />}>
