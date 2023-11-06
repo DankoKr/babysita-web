@@ -6,6 +6,7 @@ import usePatchJobApplicationRequest from "../services/usePatchJobApplicationReq
 import JobApplicationsList from "../components/JobApplicationList";
 import styles from "./PostersPage.module.css";
 import useDeleteRequest from "../services/useDeleteRequest";
+import useAssignBabysitterReguest from "../services/useAssignBabysitterReguest";
 
 const JobApplicationPage = () => {
   const { user } = useContext(AuthContext);
@@ -13,12 +14,17 @@ const JobApplicationPage = () => {
   const [jobApplicationData, fetchJobApplications] =
     useGetUserJobApplicationsRequest(user.role, token);
   const patchData = usePatchJobApplicationRequest("/jobApplications", token);
+  const assignBabysitter = useAssignBabysitterReguest(token);
   const deleteJobApplication = useDeleteRequest(
     "/jobApplications",
     TokenManager.getAccessToken()
   );
 
   const handleAccept = async (jobApplication) => {
+    await assignBabysitter(
+      jobApplication.posterId,
+      jobApplication.babysitterId
+    );
     await patchData(jobApplication.id, "Approved");
     fetchJobApplications(user.userId);
   };

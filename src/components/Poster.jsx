@@ -2,11 +2,15 @@ import styles from "./Poster.module.css";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 
-const Poster = ({ poster, isEditable }) => {
+const Poster = ({ poster, isEditable, isBabysitter }) => {
   const navigate = useNavigate();
 
   const handleEditClick = (posterId) => {
     navigate(`/edit-poster/${posterId}`);
+  };
+
+  const handleApplyClick = (posterId) => {
+    console.log("I apply for " + posterId);
   };
 
   return (
@@ -26,6 +30,9 @@ const Poster = ({ poster, isEditable }) => {
           </p>
           {isEditable && (
             <Button text="Edit" onClick={() => handleEditClick(poster.id)} />
+          )}
+          {isBabysitter && (
+            <Button text="Apply" onClick={() => handleApplyClick(poster.id)} />
           )}
         </div>
       ) : (
