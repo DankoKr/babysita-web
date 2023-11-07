@@ -1,18 +1,7 @@
 import styles from "./Poster.module.css";
-import Button from "../components/Button";
-import { useNavigate } from "react-router-dom";
+import PosterActions from "./PosterActions";
 
 const Poster = ({ poster, isEditable, isBabysitter }) => {
-  const navigate = useNavigate();
-
-  const handleEditClick = (posterId) => {
-    navigate(`/edit-poster/${posterId}`);
-  };
-
-  const handleApplyClick = (posterId) => {
-    console.log("I apply for " + posterId);
-  };
-
   return (
     <div className={styles.posterContainer}>
       {poster ? (
@@ -28,12 +17,11 @@ const Poster = ({ poster, isEditable, isBabysitter }) => {
           <p>
             <strong>Date:</strong> {poster.eventDate}
           </p>
-          {isEditable && (
-            <Button text="Edit" onClick={() => handleEditClick(poster.id)} />
-          )}
-          {isBabysitter && (
-            <Button text="Apply" onClick={() => handleApplyClick(poster.id)} />
-          )}
+          <PosterActions
+            poster={poster}
+            isEditable={isEditable}
+            isBabysitter={isBabysitter}
+          />
         </div>
       ) : (
         <p>No poster data available.</p>
