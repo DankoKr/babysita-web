@@ -8,7 +8,7 @@ import AuthContext from "../auth/AuthContext";
 const PosterPage = () => {
   const { user } = useContext(AuthContext);
   const [posterData, fetchPosters] = useGetRequest(
-    "/posters",
+    "/posters/noBabysitter",
     TokenManager.getAccessToken()
   );
 
