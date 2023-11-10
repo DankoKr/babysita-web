@@ -1,30 +1,30 @@
 import { useContext, useEffect } from "react";
-import useGetRequest from "../services/useGetRequest";
+import useGetUserPostersRequest from "../services/useGetUserPostersRequest";
 import styles from "./PostersPage.module.css";
 import TokenManager from "../auth/TokenManager";
 import PostersWrapper from "../components/PostersWrapper";
 import AuthContext from "../auth/AuthContext";
 
-const PosterPage = () => {
+const MyPostersPage = () => {
   const { user } = useContext(AuthContext);
-  const [posterData, fetchPosters] = useGetRequest(
-    "/posters/noBabysitter",
+  const [posterData, fetchPosters] = useGetUserPostersRequest(
+    "/user",
     TokenManager.getAccessToken()
   );
 
   useEffect(() => {
-    fetchPosters();
+    fetchPosters(user.userId);
   }, []);
 
-  if (posterData.size === 0)
+  if (posterData.length === 0)
     return <p className={styles.loadingMessage}>No data...</p>;
 
   return (
     <PostersWrapper
       posterData={posterData}
-      isBabysitter={user.role === "babysitter"}
+      isEditable={user.role === "parent"}
     />
   );
 };
 
-export default PosterPage;
+export default MyPostersPage;

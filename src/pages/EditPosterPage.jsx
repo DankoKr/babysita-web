@@ -4,14 +4,16 @@ import { Formik, Form } from 'formik';
 import { posterSchema } from '../schemas/posterSchema';
 import CustomInput from '../components/CustomInput';
 import usePutRequest from '../services/usePutRequest';
-import useGetByIdRequest from '../services/useGetByIdRequest';
+import useGetPosterByIdRequest from '../services/useGetPosterByIdRequest';
 import styles from './CreatePosterPage.module.css';
 import Button from '../components/Button';
+import TokenManager from '../auth/TokenManager';
 
 const EditPosterPage = () => {
     const { id } = useParams();
-    const { putData } = usePutRequest();
-    const [poster, fetchDataById] = useGetByIdRequest();
+    const token = TokenManager.getAccessToken(); 
+    const { putData } = usePutRequest(token);
+    const [poster, fetchDataById] = useGetPosterByIdRequest(token);
     const navigate  = useNavigate();
 
     useEffect(() => {

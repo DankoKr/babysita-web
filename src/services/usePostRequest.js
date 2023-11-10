@@ -1,20 +1,20 @@
 import axios from "axios";
 
-const url = "http://localhost:8080/posters";
+const url = "http://localhost:8080";
 
-const usePostRequest = () => {
+const usePostRequest = (urlExtension, accessToken) => {
   const postData = async (values) => {
     try {
-      const resp = await axios.post(url, values);
+      await axios.post(url + urlExtension, values, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
     } catch (error) {
       console.error(error.response);
       throw error;
     }
   };
-  
-  //state is now managed by Formik
+
   return { postData };
-  
 };
 
 export default usePostRequest;

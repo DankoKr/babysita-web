@@ -1,22 +1,82 @@
-import styles from './Navbar.module.css'
+import styles from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
-    return (
-      <nav className={styles.navBar}>
-        <h1>Babysita</h1>
+const Navbar = ({ user }) => {
+  const nav = [
+    { path: "/", name: "Home", isMenu: true, isPrivate: false, role: "any" },
+    {
+      path: "/login",
+      name: "Login",
+      isMenu: false,
+      isPrivate: false,
+      role: "any",
+    },
+    {
+      path: "/account",
+      name: "Account",
+      isMenu: true,
+      isPrivate: true,
+      role: "any",
+    },
+    {
+      path: "/create-poster",
+      name: "Create Poster",
+      isMenu: true,
+      isPrivate: true,
+      role: "parent",
+    },
+    {
+      path: "/babysitters",
+      name: "Babysitters",
+      isMenu: true,
+      isPrivate: true,
+      role: "parent",
+    },
+    {
+      path: "/posters",
+      name: "Posters",
+      isMenu: true,
+      isPrivate: true,
+      role: "babysitter",
+    },
+    {
+      path: "/posters-table",
+      name: "PosterTable",
+      isMenu: true,
+      isPrivate: true,
+      role: "admin",
+    },
+    {
+      path: "/users-table",
+      name: "UsersTable",
+      isMenu: true,
+      isPrivate: true,
+      role: "admin",
+    },
+  ];
 
-        <div className={styles['links']}>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/login">Login</NavLink>
-          <NavLink to="/account">My Account</NavLink>
-          <NavLink to="/posters">Posters</NavLink>
-          <NavLink to="/create-poster">Create Poster</NavLink>
-          <NavLink to="/admin">Admin</NavLink>
-        </div>
+  return (
+    <nav className={styles.navBar}>
+      <h1>Babysita</h1>
+      <div className={styles["links"]}>
+        {nav.map((route) => {
+          if (
+            (user &&
+              route.isMenu &&
+              (user.role === route.role || route.role === "any")) ||
+            (!user && !route.isPrivate)
+          ) {
+            return (
+              <NavLink key={route.path} to={route.path}>
+                {route.name}
+              </NavLink>
+            );
+          }
+          return null;
+        })}
+      </div>
+    </nav>
+  );
+};
 
-      </nav>
-    );
-  }
-   
-  export default Navbar;
+export default Navbar;
