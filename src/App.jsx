@@ -20,6 +20,7 @@ import MyPostersPage from "./pages/MyPostersPage";
 import UsersManagementPage from "./pages/UsersManagementPage";
 import ViewUserPage from "./pages/ViewUserPage";
 import JobApplicationPage from "./pages/JobApplicationsPage";
+import ChatPage from "./websockets/ChatPage";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -37,6 +38,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<LoginSignUpPage />} />
+              <Route path="/chat" element={<ChatPage />} />
 
               <Route element={<ProtectedRoute isAllowed={isLoggedIn} />}>
                 <Route path="/account" element={<AccountPage />} />
