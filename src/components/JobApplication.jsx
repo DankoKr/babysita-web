@@ -3,7 +3,6 @@ const JobApplication = ({ jobApplication }) => {
     <div>
       {jobApplication ? (
         <div>
-          <h2>Job application Information</h2>
           <p>
             <strong>Status:</strong> {jobApplication.status}
           </p>

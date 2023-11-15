@@ -38,7 +38,6 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<LoginSignUpPage />} />
-              <Route path="/chat" element={<ChatPage />} />
 
               <Route element={<ProtectedRoute isAllowed={isLoggedIn} />}>
                 <Route path="/account" element={<AccountPage />} />
@@ -48,12 +47,14 @@ function App() {
                   path="/my-job-applications"
                   element={<JobApplicationPage />}
                 />
+                <Route path="/chat" element={<ChatPage />} />
               </Route>
 
               <Route element={<ProtectedRoute isAllowed={isParent} />}>
                 <Route path="/create-poster" element={<CreatePosterPage />} />
                 <Route path="/edit-poster/:id" element={<EditPosterPage />} />
                 <Route path="/babysitters" element={<BabysittersPage />} />
+                <Route path="/view-user/:id" element={<ViewUserPage />} />
               </Route>
 
               <Route element={<ProtectedRoute isAllowed={isBabysitter} />}>
@@ -66,7 +67,6 @@ function App() {
                   element={<PostersManagementPage />}
                 />
                 <Route path="/users-table" element={<UsersManagementPage />} />
-                <Route path="/view-user/:id" element={<ViewUserPage />} />
               </Route>
 
               <Route path="/denied" element={<AccessDeniedPage />} />

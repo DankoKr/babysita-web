@@ -58,7 +58,6 @@ const AccountBox = ({ user }) => {
                 />
               </div>
             ))}
-            {user.role === "babysitter" && <p>Points: {user.points}</p>}
           </div>
           <div className={styles.buttonsBox}>
             {user.role != "admin" && (

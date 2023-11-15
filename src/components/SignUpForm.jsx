@@ -6,15 +6,20 @@ import styles from "./LoginForm.module.css";
 import Button from "./Button";
 import usePostUserRequest from "../services/usePostUserRequest";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useAuthJwtToken from "../services/useAuthJwtToken";
 
 const SignUpForm = () => {
   const { createUser } = usePostUserRequest();
   const [signUpError, setsignUpError] = useState(null);
+  const navigate = useNavigate();
+  const login = useAuthJwtToken();
 
-  const onSubmit = async (values, actions) => {
+  const onSubmit = async (values) => {
     try {
       await createUser(values);
-      actions.resetForm();
+      await login(values.username, values.password);
+      navigate("/account");
     } catch (error) {
       setsignUpError(error.response.data);
     }

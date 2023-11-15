@@ -1,36 +1,43 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-const SendMessagePlaceholder = (props) => {
-  const [message, setMessage] = useState('');
-  const [destinationUsername, setDestinationUsername] = useState('');
+const SendMessagePlaceholder = ({
+  senderName,
+  receiverName,
+  onMessageSend,
+}) => {
+  const [message, setMessage] = useState("");
 
-  if (!props.username) {
+  if (!senderName) {
     return <></>;
   }
 
-  const onMessageSend = () => {
+  const handleSendMessage = () => {
     if (!message) {
-      alert('Please type a message!');
+      alert("Please type a message!");
+      return;
     }
 
-    props.onMessageSend({ 'text': message, 'to': destinationUsername });
-    setMessage('');
-  }
+    onMessageSend({ text: message, to: receiverName });
+    setMessage("");
+  };
 
-  const onSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-  }
+    handleSendMessage();
+  };
 
   return (
-    <form onSubmit={onSubmit}>
-      <label htmlFor='message'>Message:</label>
-      <input id='message' type='text' onChange={(event) => setMessage(event.target.value)} value={message}></input>
-      <br />
-      <label htmlFor='destUsername'>Destination:</label>
-      <input id='destUsername' type='text' onChange={(event) => setDestinationUsername(event.target.value)}></input>
-      <button onClick={onMessageSend}>Send</button>
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="message">Message:</label>
+      <input
+        id="message"
+        type="text"
+        onChange={(event) => setMessage(event.target.value)}
+        value={message}
+      />
+      <button type="submit">Send</button>
     </form>
   );
-}
+};
 
 export default SendMessagePlaceholder;

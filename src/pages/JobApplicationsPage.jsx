@@ -8,6 +8,7 @@ import styles from "./PostersPage.module.css";
 import useDeleteRequest from "../services/useDeleteRequest";
 import useAssignBabysitterReguest from "../services/useAssignBabysitterReguest";
 import usePatchRequest from "../services/usePatchJobApplicationRequest";
+import { useNavigate } from "react-router-dom";
 
 const JobApplicationPage = () => {
   const { user } = useContext(AuthContext);
@@ -18,6 +19,7 @@ const JobApplicationPage = () => {
   const assignBabysitter = useAssignBabysitterReguest(token);
   const deleteJobApplication = useDeleteRequest("/jobApplications", token);
   const updateBabysitterPoints = usePatchRequest("/babysitters", token);
+  const navigate = useNavigate();
 
   const handleAccept = async (jobApplication) => {
     await assignBabysitter(
@@ -34,8 +36,12 @@ const JobApplicationPage = () => {
     fetchJobApplications(user.userId);
   };
 
-  const handleChat = (jobApplication) => {
-    console.log("Chat with " + jobApplication.babysitterId);
+  const handleView = async (jobApplication) => {
+    if (user.role === "parent") {
+      navigate(`/view-user/${jobApplication.babysitterId}`);
+    } else {
+      navigate(`/view-poster/${jobApplication.posterId}`);
+    }
   };
 
   useEffect(() => {
@@ -51,7 +57,7 @@ const JobApplicationPage = () => {
         jobApplications={[...jobApplicationData.values()]}
         onAccept={handleAccept}
         onReject={handleReject}
-        onChat={handleChat}
+        onView={handleView}
       />
     </div>
   );
