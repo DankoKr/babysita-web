@@ -42,7 +42,6 @@ function App() {
               <Route element={<ProtectedRoute isAllowed={isLoggedIn} />}>
                 <Route path="/account" element={<AccountPage />} />
                 <Route path="/view-poster/:id" element={<ViewPosterPage />} />
-                <Route path="/my-posters" element={<MyPostersPage />} />
                 <Route
                   path="/my-job-applications"
                   element={<JobApplicationPage />}
@@ -55,6 +54,7 @@ function App() {
                 <Route path="/edit-poster/:id" element={<EditPosterPage />} />
                 <Route path="/babysitters" element={<BabysittersPage />} />
                 <Route path="/view-user/:id" element={<ViewUserPage />} />
+                <Route path="/my-posters" element={<MyPostersPage />} />
               </Route>
 
               <Route element={<ProtectedRoute isAllowed={isBabysitter} />}>
