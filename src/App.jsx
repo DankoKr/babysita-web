@@ -46,7 +46,10 @@ function App() {
                   path="/my-job-applications"
                   element={<JobApplicationPage />}
                 />
-                <Route path="/chat" element={<ChatPage />} />
+                <Route
+                  path="/chat/:senderName/:receiverName"
+                  element={<ChatPage />}
+                />
               </Route>
 
               <Route element={<ProtectedRoute isAllowed={isParent} />}>

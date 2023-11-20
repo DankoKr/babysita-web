@@ -21,6 +21,19 @@ const JobApplicationPage = () => {
   const updateBabysitterPoints = usePatchRequest("/babysitters", token);
   const navigate = useNavigate();
 
+  const handleChat = async (jobApplication) => {
+    let senderName, receiverName;
+
+    if (user.role === "parent") {
+      senderName = jobApplication.parentId;
+      receiverName = jobApplication.babysitterId;
+    } else if (user.role === "babysitter") {
+      senderName = jobApplication.babysitterId;
+      receiverName = jobApplication.parentId;
+    }
+    navigate(`/chat/${senderName}/${receiverName}`);
+  };
+
   const handleAccept = async (jobApplication) => {
     await assignBabysitter(
       jobApplication.posterId,
@@ -58,6 +71,7 @@ const JobApplicationPage = () => {
         onAccept={handleAccept}
         onReject={handleReject}
         onView={handleView}
+        onChat={handleChat}
       />
     </div>
   );

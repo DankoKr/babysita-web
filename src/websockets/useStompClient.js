@@ -22,9 +22,6 @@ const useStompClient = (username) => {
     });
 
     client.onConnect = () => {
-      // Subscribe to public messages
-      client.subscribe("/topic/publicmessages", onMessageReceived);
-
       // Subscribe to private messages if username is available
       if (username) {
         client.subscribe(

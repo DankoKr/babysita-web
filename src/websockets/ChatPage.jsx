@@ -1,9 +1,10 @@
-import React from "react";
 import ChatMessagesPlaceholder from "./components/ChatMessagesPlaceHolder";
 import SendMessagePlaceholder from "./components/SendMessagePlaceholder";
 import { useStompClient } from "./useStompClient";
+import { useParams } from "react-router-dom";
 
-const ChatPage = ({ senderName, receiverName }) => {
+const ChatPage = () => {
+  const { senderName, receiverName } = useParams();
   const { messagesReceived, sendMessage } = useStompClient(senderName);
 
   return (

@@ -16,7 +16,7 @@ const Babysitter = ({ babysitter }) => {
               </h4>
               <span>Age: {babysitter.age}</span>
               <span className={styles.rating}>Points: {babysitter.points}</span>
-              <Button text={"Chat"} />
+              {/* <Button text={"Chat"} /> */}
             </div>
           </div>
         </div>

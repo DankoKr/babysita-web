@@ -7,6 +7,7 @@ const JobApplicationsList = ({
   onAccept,
   onReject,
   onView,
+  onChat,
 }) => {
   return (
     <div>
@@ -18,6 +19,7 @@ const JobApplicationsList = ({
             onAccept={onAccept}
             onReject={onReject}
             onView={onView}
+            onChat={onChat}
           />
         </div>
       ))}
