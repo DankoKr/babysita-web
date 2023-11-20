@@ -34,6 +34,7 @@ const UsersManagementPage = () => {
   };
 
   const columns = [
+    { key: "id", header: "ID" },
     { key: "username", header: "Username" },
     { key: "email", header: "Email" },
   ];
