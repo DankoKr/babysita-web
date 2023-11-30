@@ -20,6 +20,7 @@ import MyPostersPage from "./pages/MyPostersPage";
 import UsersManagementPage from "./pages/UsersManagementPage";
 import ViewUserPage from "./pages/ViewUserPage";
 import JobApplicationPage from "./pages/JobApplicationsPage";
+import ChatPage from "./websockets/ChatPage";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -41,10 +42,13 @@ function App() {
               <Route element={<ProtectedRoute isAllowed={isLoggedIn} />}>
                 <Route path="/account" element={<AccountPage />} />
                 <Route path="/view-poster/:id" element={<ViewPosterPage />} />
-                <Route path="/my-posters" element={<MyPostersPage />} />
                 <Route
                   path="/my-job-applications"
                   element={<JobApplicationPage />}
+                />
+                <Route
+                  path="/chat/:senderName/:receiverName"
+                  element={<ChatPage />}
                 />
               </Route>
 
@@ -52,6 +56,8 @@ function App() {
                 <Route path="/create-poster" element={<CreatePosterPage />} />
                 <Route path="/edit-poster/:id" element={<EditPosterPage />} />
                 <Route path="/babysitters" element={<BabysittersPage />} />
+                <Route path="/view-user/:id" element={<ViewUserPage />} />
+                <Route path="/my-posters" element={<MyPostersPage />} />
               </Route>
 
               <Route element={<ProtectedRoute isAllowed={isBabysitter} />}>
@@ -64,7 +70,6 @@ function App() {
                   element={<PostersManagementPage />}
                 />
                 <Route path="/users-table" element={<UsersManagementPage />} />
-                <Route path="/view-user/:id" element={<ViewUserPage />} />
               </Route>
 
               <Route path="/denied" element={<AccessDeniedPage />} />

@@ -28,6 +28,7 @@ const PostersManagementPage = () => {
   };
 
   const columns = [
+    { key: "id", header: "ID" },
     { key: "title", header: "Title" },
     { key: "description", header: "Description" },
   ];

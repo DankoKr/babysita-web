@@ -31,7 +31,7 @@ const AccountPage = () => {
     <div className={styles.accountContainer}>
       <div className={styles.accountData}>
         <AccountBox user={user} />
-        {user.role != "admin" && (
+        {user.role === "parent" && (
           <Button text="My posters" onClick={() => onSubmit("/my-posters")} />
         )}
         {user.role != "admin" && (

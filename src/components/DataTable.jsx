@@ -21,27 +21,27 @@ const DataTable = ({
         </thead>
         <tbody>
           {[...data.entries()].map(([id, item]) => (
-            <tr key={id}>
+            <tr key={item.id}>
               {columns.map((col) => (
                 <td key={col.key}>{item[col.key]}</td>
               ))}
               <td>
                 <NavLink
-                  to={`/view-${urlExtension}/${id}`}
+                  to={`/view-${urlExtension}/${item.id}`}
                   className={styles.viewButton}
                 >
                   View
                 </NavLink>
                 {isEditable && (
                   <NavLink
-                    to={`/edit-${urlExtension}/${id}`}
+                    to={`/edit-${urlExtension}/${item.id}`}
                     className={styles.editButton}
                   >
                     Edit
                   </NavLink>
                 )}
                 <button
-                  onClick={() => handleDelete(id)}
+                  onClick={() => handleDelete(item.id)}
                   className={styles.deleteButton}
                 >
                   Delete

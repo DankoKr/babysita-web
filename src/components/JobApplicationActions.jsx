@@ -6,6 +6,7 @@ const JobApplicationActions = ({
   jobApplication,
   onAccept,
   onReject,
+  onView,
   onChat,
 }) => {
   const { user } = useContext(AuthContext);
@@ -17,6 +18,11 @@ const JobApplicationActions = ({
       { text: "Reject", onClick: () => onReject(jobApplication) }
     );
   }
+
+  buttons.push({
+    text: user.role === "parent" ? "Babysitter" : "Poster",
+    onClick: () => onView(jobApplication),
+  });
 
   buttons.push({ text: "Chat", onClick: () => onChat(jobApplication) });
 

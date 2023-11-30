@@ -7,6 +7,8 @@ import JobApplicationsList from "../components/JobApplicationList";
 import styles from "./PostersPage.module.css";
 import useDeleteRequest from "../services/useDeleteRequest";
 import useAssignBabysitterReguest from "../services/useAssignBabysitterReguest";
+import usePatchRequest from "../services/usePatchJobApplicationRequest";
+import { useNavigate } from "react-router-dom";
 
 const JobApplicationPage = () => {
   const { user } = useContext(AuthContext);
@@ -15,10 +17,22 @@ const JobApplicationPage = () => {
     useGetUserJobApplicationsRequest(user.role, token);
   const patchData = usePatchJobApplicationRequest("/jobApplications", token);
   const assignBabysitter = useAssignBabysitterReguest(token);
-  const deleteJobApplication = useDeleteRequest(
-    "/jobApplications",
-    TokenManager.getAccessToken()
-  );
+  const deleteJobApplication = useDeleteRequest("/jobApplications", token);
+  const updateBabysitterPoints = usePatchRequest("/babysitters", token);
+  const navigate = useNavigate();
+
+  const handleChat = async (jobApplication) => {
+    let senderName, receiverName;
+
+    if (user.role === "parent") {
+      senderName = jobApplication.parentId;
+      receiverName = jobApplication.babysitterId;
+    } else if (user.role === "babysitter") {
+      senderName = jobApplication.babysitterId;
+      receiverName = jobApplication.parentId;
+    }
+    navigate(`/chat/${senderName}/${receiverName}`);
+  };
 
   const handleAccept = async (jobApplication) => {
     await assignBabysitter(
@@ -26,6 +40,7 @@ const JobApplicationPage = () => {
       jobApplication.babysitterId
     );
     await patchData(jobApplication.id, "Approved");
+    await updateBabysitterPoints(jobApplication.babysitterId);
     fetchJobApplications(user.userId);
   };
 
@@ -34,8 +49,12 @@ const JobApplicationPage = () => {
     fetchJobApplications(user.userId);
   };
 
-  const handleChat = (jobApplication) => {
-    console.log("Chat with " + jobApplication.babysitterId);
+  const handleView = async (jobApplication) => {
+    if (user.role === "parent") {
+      navigate(`/view-user/${jobApplication.babysitterId}`);
+    } else {
+      navigate(`/view-poster/${jobApplication.posterId}`);
+    }
   };
 
   useEffect(() => {
@@ -51,6 +70,7 @@ const JobApplicationPage = () => {
         jobApplications={[...jobApplicationData.values()]}
         onAccept={handleAccept}
         onReject={handleReject}
+        onView={handleView}
         onChat={handleChat}
       />
     </div>
