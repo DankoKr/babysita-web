@@ -1,9 +1,12 @@
-import React from "react";
+const MessageReceived = ({ from, text, direct, isMine }) => {
+  const messageStyle = isMine
+    ? { color: 'black' }
+    : { color: 'blue', fontWeight: 'bold' };
+  const prefix = isMine ? 'Me' : from;
 
-const MessageReceived = ({ from, text, direct }) => {
   return (
-    <div>
-      <b>{from}</b>: {text} {direct ? <b>(direct)</b> : ""}
+    <div style={messageStyle}>
+      <b>{prefix}</b>: {text}
     </div>
   );
 };
@@ -12,16 +15,15 @@ const ChatMessagesPlaceholder = ({ senderName, messagesReceived }) => {
   return (
     <>
       <h2>Messages:</h2>
-      {messagesReceived
-        .filter((message) => message.from !== senderName)
-        .map((message) => (
-          <MessageReceived
-            key={message.id}
-            from={message.from}
-            direct={message.to === senderName}
-            text={message.text}
-          />
-        ))}
+      {messagesReceived.map((message) => (
+        <MessageReceived
+          key={message.id}
+          from={message.from}
+          direct={message.to === senderName}
+          text={message.text}
+          isMine={message.from === senderName}
+        />
+      ))}
     </>
   );
 };
