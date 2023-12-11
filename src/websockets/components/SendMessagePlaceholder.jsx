@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from './ChatPage.module.css';
 
 const SendMessagePlaceholder = ({
   senderName,
@@ -6,10 +7,6 @@ const SendMessagePlaceholder = ({
   onMessageSend,
 }) => {
   const [message, setMessage] = useState('');
-
-  if (!senderName) {
-    return <></>;
-  }
 
   const handleSendMessage = () => {
     if (!message) {
@@ -27,16 +24,18 @@ const SendMessagePlaceholder = ({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor='message'>Message:</label>
-      <input
-        id='message'
-        type='text'
-        onChange={(event) => setMessage(event.target.value)}
-        value={message}
-      />
-      <button type='submit'>Send</button>
-    </form>
+    <div className={styles.sendMessageContainer}>
+      <form className={styles.sendMessageForm} onSubmit={handleSubmit}>
+        <label htmlFor='message'>Message:</label>
+        <input
+          id='message'
+          type='text'
+          onChange={(event) => setMessage(event.target.value)}
+          value={message}
+        />
+        <button type='submit'>Send</button>
+      </form>
+    </div>
   );
 };
 

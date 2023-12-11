@@ -1,30 +1,32 @@
+import styles from './ChatPage.module.css';
+
 const MessageReceived = ({ from, text, isMine }) => {
-  const messageStyle = isMine
-    ? { color: 'black' }
-    : { color: 'blue', fontWeight: 'bold' };
+  const messageClasses = isMine
+    ? `${styles.messageBox} ${styles.mine}`
+    : styles.messageBox;
+
   const prefix = isMine ? 'Me' : from;
 
   return (
-    <div style={messageStyle}>
-      <b>{prefix}</b>: {text}
+    <div className={messageClasses}>
+      <div className={styles.messageSender}>{prefix}</div>
+      <div>{text}</div>
     </div>
   );
 };
 
 const ChatMessagesPlaceholder = ({ senderName, messagesReceived }) => {
   return (
-    <>
-      <h2>Messages:</h2>
+    <div className={styles.messagesContainer}>
       {messagesReceived.map((message) => (
         <MessageReceived
           key={message.id}
           from={message.from}
-          direct={message.to === senderName}
           text={message.text}
           isMine={message.from === senderName}
         />
       ))}
-    </>
+    </div>
   );
 };
 
