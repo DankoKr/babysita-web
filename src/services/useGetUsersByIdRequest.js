@@ -10,13 +10,12 @@ const useGetUsersByIdRequest = (accessToken) => {
     try {
       const response = await axios.get(
         `${url}/${firstUserId}/${secondUserId}`,
-        {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        }
+        { headers: { Authorization: `Bearer ${accessToken}` } }
       );
-      setUsers(response.data);
+      return response.data; // Return the data directly
     } catch (error) {
       console.error(error);
+      return null; // Return null in case of an error
     }
   };
 

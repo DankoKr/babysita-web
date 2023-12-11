@@ -24,22 +24,24 @@ const JobApplicationPage = () => {
   const { users, fetchUsersById } = useGetUsersByIdRequest(token);
 
   const handleChat = async (jobApplication) => {
-    let senderName, receiverName;
-
+    let fetchedUsers;
     if (user.role === 'parent') {
-      await fetchUsersById(
+      fetchedUsers = await fetchUsersById(
         jobApplication.parentId,
         jobApplication.babysitterId
       );
     } else if (user.role === 'babysitter') {
-      await fetchUsersById(
+      fetchedUsers = await fetchUsersById(
         jobApplication.babysitterId,
         jobApplication.parentId
       );
     }
-    senderName = users[0].username;
-    receiverName = users[1].username;
-    navigate(`/chat/${senderName}/${receiverName}`);
+
+    if (fetchedUsers && fetchedUsers.length >= 2) {
+      const senderName = fetchedUsers[0].username;
+      const receiverName = fetchedUsers[1].username;
+      navigate(`/chat/${senderName}/${receiverName}`);
+    }
   };
 
   const handleAccept = async (jobApplication) => {

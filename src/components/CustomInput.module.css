@@ -1,23 +1,25 @@
 .input {
-    width: 50%; 
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 8px;
-    border: 2px solid #ddd;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 70%; /* Increased from 50% to 70% */
+  padding: 15px; /* Increased padding */
+  margin: 5px 0;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 1.2em; /* Larger text inside input */
 }
-  
+
 .inputError {
-    border-color: red;
-    box-shadow: 0px 4px 6px rgba(255, 0, 0, 0.1);
+  border-color: red;
+  box-shadow: 0px 4px 6px rgba(255, 0, 0, 0.1);
 }
-  
+
 .errorMessage {
-    color: red;
-    font-size: 0.8em;
+  color: red;
+  font-size: 0.8em;
 }
-  
+
 .labelName {
-    font-weight: bold;
-    color: #FF69B4; 
+  font-weight: bold;
+  color: #ff69b4;
+  font-size: 1.5em; /* Increased font size */
 }
