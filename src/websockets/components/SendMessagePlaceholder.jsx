@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from 'react';
 
 const SendMessagePlaceholder = ({
   senderName,
   receiverName,
   onMessageSend,
 }) => {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
 
   if (!senderName) {
     return <></>;
@@ -13,12 +13,12 @@ const SendMessagePlaceholder = ({
 
   const handleSendMessage = () => {
     if (!message) {
-      alert("Please type a message!");
+      alert('Please type a message!');
       return;
     }
 
     onMessageSend({ text: message, to: receiverName });
-    setMessage("");
+    setMessage('');
   };
 
   const handleSubmit = (event) => {
@@ -28,14 +28,14 @@ const SendMessagePlaceholder = ({
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="message">Message:</label>
+      <label htmlFor='message'>Message:</label>
       <input
-        id="message"
-        type="text"
+        id='message'
+        type='text'
         onChange={(event) => setMessage(event.target.value)}
         value={message}
       />
-      <button type="submit">Send</button>
+      <button type='submit'>Send</button>
     </form>
   );
 };

@@ -1,4 +1,4 @@
-const MessageReceived = ({ from, text, direct, isMine }) => {
+const MessageReceived = ({ from, text, isMine }) => {
   const messageStyle = isMine
     ? { color: 'black' }
     : { color: 'blue', fontWeight: 'bold' };
