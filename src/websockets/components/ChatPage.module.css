@@ -1,0 +1,68 @@
+.chat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.chatHeader {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.messageBox {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px 0;
+  max-width: 70%;
+  border: 1px solid #ccc;
+}
+
+.messageBox.mine {
+  background-color: #0099ff;
+  color: white;
+  border: 1px solid #0099ff;
+}
+
+.messageBox .messageSender {
+  font-weight: bold;
+}
+
+.sendMessageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.sendMessageForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sendMessageForm label {
+  font-weight: bold;
+}
+
+.sendMessageForm input[type='text'] {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.sendMessageForm button {
+  background-color: #0099ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.sendMessageForm button:hover {
+  background-color: #0077cc;
+}

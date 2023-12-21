@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from "react";
-import { Client } from "@stomp/stompjs";
-import { v4 as uuidv4 } from "uuid";
+import { useState, useEffect, useCallback } from 'react';
+import { Client } from '@stomp/stompjs';
+import { v4 as uuidv4 } from 'uuid';
 
 const useStompClient = (username) => {
   const [stompClient, setStompClient] = useState(null);
@@ -15,7 +15,7 @@ const useStompClient = (username) => {
   // Function to setup STOMP client
   const setupStompClient = useCallback(() => {
     const client = new Client({
-      brokerURL: "ws://localhost:8080/ws",
+      brokerURL: 'ws://localhost:8080/ws',
       reconnectDelay: 5000,
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
@@ -47,7 +47,12 @@ const useStompClient = (username) => {
 
   // Function to send a message
   const sendMessage = (newMessage) => {
-    if (!stompClient || !username) return;
+    console.log('sendMessage called with:', newMessage);
+
+    if (!stompClient || !username) {
+      console.log('Stomp client or username not set');
+      return;
+    }
 
     const payload = {
       id: uuidv4(),
@@ -56,13 +61,23 @@ const useStompClient = (username) => {
       text: newMessage.text,
     };
 
+    console.log('Payload to be sent:', payload);
+
     const destination = payload.to
       ? `/user/${payload.to}/queue/inboxmessages`
-      : "/topic/publicmessages";
+      : '/topic/publicmessages';
+
+    console.log('Destination:', destination);
 
     stompClient.publish({
       destination,
       body: JSON.stringify(payload),
+    });
+
+    setMessagesReceived((prevMessages) => {
+      const updatedMessages = [...prevMessages, payload];
+      console.log('Updated messages:', updatedMessages);
+      return updatedMessages;
     });
   };
 
